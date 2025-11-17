@@ -138,5 +138,87 @@
         </div>
       </div>
     </main>
+
+    <!-- modal add new worker -->
+    <div id="add-worker-modal" class="fixed hidden justify-between items-center z-99">
+      <div class="bg-white flex flex-col gap-4 pl-2">
+        <h2 class="text-xl font-bold">Add Employee</h2>
+        <div class="field flex flex-col gap-2">
+          <label for="name-input">Name</label>
+          <input
+            id="name-input"
+            type="text"
+            placeholder="Name"
+            class="input-field"
+          />
+        </div>
+        <div class="field flex flex-col gap-2">
+          <label for="role-select">Role</label>
+          <select name="role" id="role-select" class="input-field">
+            <option value="IT">IT</option>
+            <option value="IT2">IT 2</option>
+            <option value="IT3">IT 3</option>
+          </select>
+        </div>
+        <div class="field flex flex-col gap-2">
+          <input
+            id="photoInput"
+            type="text"
+            placeholder="Photo URL"
+            class="input-field"
+          />
+          <img
+            src="./img/plan-69159a65c5684763515973.jpg"
+            class="w-16 h-auto rounded-[50%] object-cover mx-auto"
+            alt=""
+          />
+        </div>
+        <div class="field flex flex-col gap-2">
+          <label for="email-input">Email</label>
+          <input
+            id="emailI-input"
+            type="text"
+            placeholder="Email"
+            class="input-field"
+          />
+        </div>
+        <div class="field flex flex-col gap-2">
+          <label for="phone-input">Phone</label>
+          <input
+            id="phone-input"
+            type="text"
+            placeholder="Phone"
+            class="input-field"
+          />
+        </div>
+
+        <div>
+          <label class="font-semibold">Expériences</label>
+          <div id="experience-container" class="space-y-2"></div>
+
+          <button
+            id="btn-add-experience"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2 text-sm"
+          >
+            Add Experience
+          </button>
+        </div>
+
+        <div class="flex justify-between pt-4">
+          <button
+            id="btn-close-modal"
+            class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
+          >
+            Cancel
+          </button>
+          <button
+            id="btn-save-employee"
+            class="bg-green-500 py-2 rounded px-2.5 hover:bg-green-600"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
