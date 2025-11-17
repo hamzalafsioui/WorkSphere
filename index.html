@@ -10,9 +10,7 @@
     <script src="./scripts/script.js" defer></script>
     <title>Work Sphere</title>
   </head>
-  <body
-    class="min-h-screen flex overflow-auto bg-gray-100"
-  >
+  <body class="min-h-screen flex overflow-auto bg-gray-100">
     <!-- sideBare -->
     <aside
       class="w-[25%] md:w-[25%] bg-white shadow-2xl p-4 flex flex-col gap-4 relative"
@@ -38,11 +36,25 @@
       </button>
     </aside>
     <!-- main  -->
-     <main class="flex-1 relative overflow-hidden">
-        <div id="floor-plan" class="w-full min-h-screen bg-contain bg-no-repeat bg-top relative" style="background-image: url('./img/plan-69159a65c5684763515973.jpg');">
-            <!-- zones -->
-             
-        </div>
-     </main>
+    <main class="flex-1 relative w-full">
+      <!-- style="background-image: url('./img/plan-69159a65c5684763515973.jpg')" -->
+      <img
+        src="./img/plan-69159a65c5684763515973.jpg"
+        alt=""
+        class="max-w-full h-screen"
+      />
+      <div
+        id="floor-plan"
+        class="absolute top-0 left-0 grid grid-cols-[38%_17%_22%_22%] grid-rows-[33.5%_32%_32.5%] w-full h-full bg-contain bg-no-repeat bg-top"
+      >
+        <!-- zones -->
+        <div class="col-start-1 row-start-1 bg-amber-300/15 hover:bg-red-500/30">1</div>
+        <div class="col-start-1 row-start-2 row-span-2 bg-amber-300/15 hover:bg-red-500/30">2</div>
+        <div class="col-start-3 row-start-1 bg-amber-300/15 hover:bg-red-500/30">3</div>
+        <div class="col-start-4 row-start-1 bg-amber-300/15 hover:bg-red-500/30">4</div>
+        <div class="col-start-3 row-start-3 bg-amber-300/15 hover:bg-red-500/30">5</div>
+        <div class="col-start-4 row-start-3 bg-amber-300/15 hover:bg-red-500/30">6</div>
+      </div>
+    </main>
   </body>
 </html>
