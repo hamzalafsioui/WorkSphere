@@ -140,8 +140,8 @@
     </main>
 
     <!-- modal add new worker -->
-    <div id="modal-add-worker" class="fixed hidden justify-between items-center z-99">
-      <div class="bg-white flex flex-col gap-4 pl-2">
+    <div id="modal-add-worker" class="fixed inset-0 overflow-y-auto  bg-black/40 p-4 hidden  z-99">
+      <div class="bg-white flex flex-col gap-4 p-4 w-[80%] md:w-[50%]">
         <h2 class="text-xl font-bold">Add Employee</h2>
         <div class="field flex flex-col gap-2">
           <label for="name-input">Name</label>
@@ -169,7 +169,7 @@
           />
           <img
             src="./img/plan-69159a65c5684763515973.jpg"
-            class="w-16 h-auto rounded-[50%] object-cover mx-auto"
+            class="w-16 h-16 rounded-[50%] object-cover"
             alt=""
           />
         </div>
@@ -204,7 +204,7 @@
           </button>
         </div>
 
-        <div class="flex justify-between pt-4">
+        <div class="flex gap-4 pt-4">
           <button
             id="btn-close-modal"
             class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
