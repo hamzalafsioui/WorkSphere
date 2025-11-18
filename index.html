@@ -237,6 +237,35 @@
       </div>
     </div>
 
-    <!-- te -->
+    <!-- Modal Show profil Info -->
+    <div
+      id="modal-profile"
+      class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-99"
+    >
+      <div
+        class="bg-white w-96 p-6 rounded shadow-xl max-h-[90vh] overflow-y-auto space-y-4"
+      >
+        <img
+          id="profile-photo"
+          class="w-24 h-24 rounded-full mx-auto object-cover"
+        />
+
+        <h2 id="profile-name" class="text-2xl font-bold text-center"></h2>
+        <h3 id="profile-role" class="text-gray-600 text-center"></h3>
+
+        <div class="space-y-1">
+          <p><strong>Email :</strong> <span id="profile-email"></span></p>
+          <p><strong>Phone :</strong> <span id="profile-phone"></span></p>
+          <p><strong>Current Zone :</strong> <span id="profile-zone"></span></p>
+        </div>
+
+        <div>
+          <h4 class="font-bold">Experiences:</h4>
+          <ul id="profile-experiences" class="list-disc pl-5"></ul>
+        </div>
+
+        <button id="btn-close-profile" class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600">Close</button>
+      </div>
+    </div>
   </body>
 </html>
