@@ -225,5 +225,49 @@ function renderUnassigned() {
   });
 }
 
+function renderZones() {
+  zones.forEach((zone) => {
+    const zoneName = zone.dataset.zone;
+    const limit = parseInt(zone.dataset.limit);
+    const container = zone.querySelector(".zone-content");
+    container.innerHTML = "";
+    const zoneEmployees = employees.filter((e) => e.zone === zoneName);
+
+    zoneEmployees.forEach((emp) => {
+      const div = document.createElement("div");
+      div.classList.add(
+        "bg-white",
+        "p-1",
+        "rounder",
+        "mb-1",
+        "flex",
+        "items-center",
+        "justify-between",
+        "cursor-pointer"
+      );
+      div.dataset.id = emp.id;
+
+      div.innerHTML = `
+      <img src= ${emp.photo} class = "w-16 h-16">
+        <span class="truncate">${emp.name} (${emp.role})</span>
+        <button class="text-red-500 font-bold">X</button>
+      `;
+      // when the user click on X
+      div.querySelector("button").addEventListener("click", () => {
+        emp.zone = null;
+        renderUnassigned();
+        renderZones();
+        saveToLocalStorage();
+      });
+      // when the user click on the profile
+      div
+        .querySelector("span")
+        .addEventListener("click", () => showProfile(emp.id));
+
+      container.appendChild(div);
+    });
+  });
+}
+
 // Run
 loadFrmLocalStorage();
