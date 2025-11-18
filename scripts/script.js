@@ -153,7 +153,9 @@ btnAddExperience.addEventListener("click", () => {
 
   experienceContainer.appendChild(expBox);
 });
-btnCloseProfile.addEventListener('click',()=>profileModal.classList.add('hidden'))
+btnCloseProfile.addEventListener("click", () =>
+  profileModal.classList.add("hidden")
+);
 
 // ================== Functions =============
 
@@ -201,11 +203,11 @@ function renderUnassigned() {
     );
     li.dataset.id = emp.id;
     li.innerHTML = `
-     <div class="flex items-center gap-2">
-        <img src="${emp.photo}" class="w-10 h-10 rounded object-cover">
-        <span class = "text-xs sm:text-sm font-semibold">${emp.name} (${emp.role})</span>
+     <div class="flex flex-col md:flex-row items-center gap-1 md:gap-2">
+        <img src="${emp.photo}" class=" w-8 h-8 md:w-10 md:h-10 rounded object-cover">
+        <span class = "text-xs sm:text-sm font-normal md:font-semibold cursor-pointer">${emp.name} (${emp.role})</span>
       </div>
-      <button class="text-red-600 font-bold p-1 text-sm md:text-base">X</button>
+      <button class="text-red-600 font-bold p-1 text-sm md:text-base cursor-pointer">X</button>
     `;
     li.querySelector("button").addEventListener("click", () => {
       employees = employees.filter((e) => e.id != emp.id);
