@@ -16,7 +16,7 @@ const workerModal = document.getElementById("modal-add-worker");
 const btnAddWorker = document.getElementById("btn-open-modal");
 const btnCloseModal = document.getElementById("btn-close-modal");
 const btnSaveEmployee = document.getElementById("btn-save-employee");
-const btnAddExperience = document.getElementById('btn-add-experience');
+const btnAddExperience = document.getElementById("btn-add-experience");
 
 // ================= Input =====================
 const nameInput = document.getElementById("name-input");
@@ -48,18 +48,18 @@ btnSaveEmployee.addEventListener("click", (e) => {
   // catch all exp
   const expBoxes = document.querySelectorAll("#experience-container > div");
   const experiences = [];
-expBoxes.forEach((box)=>{
+  expBoxes.forEach((box) => {
     const title = box.querySelector(".exp-input")?.value.trim() || "";
     const from = box.querySelector(".from-input")?.value || "";
     const to = box.querySelector(".to-input")?.value || "";
-    if(title != ""){
-        experiences.push({
-            title,
-            from,
-            to,
-        });
+    if (title != "") {
+      experiences.push({
+        title,
+        from,
+        to,
+      });
     }
-})
+  });
 
   employees.push({
     id: Date.now(),
@@ -77,62 +77,59 @@ expBoxes.forEach((box)=>{
   console.log(employees);
 });
 
-btnAddExperience.addEventListener('click', () => {
+btnAddExperience.addEventListener("click", () => {
+  // exp box
+  const expBox = document.createElement("div");
+  expBox.className = "p-3 border rounded-lg bg-gray-50 space-y-2";
 
-    // exp box
-    const expBox = document.createElement("div");
-    expBox.className = "p-3 border rounded-lg bg-gray-50 space-y-2";
+  const expInput = document.createElement("input");
+  expInput.type = "text";
+  expInput.placeholder = "Experience / Job Title";
+  expInput.classList.add("input-field", "w-full");
+  expInput.classList.add("exp-input");
 
-    const expInput = document.createElement("input");
-    expInput.type = "text";
-    expInput.placeholder = "Experience / Job Title";
-    expInput.classList.add("input-field", "w-full");
-    expInput.classList.add("exp-input");
+  // from
+  const fromGroup = document.createElement("div");
+  fromGroup.className = "flex flex-col gap-1";
 
-    // from
-    const fromGroup = document.createElement("div");
-    fromGroup.className = "flex flex-col gap-1";
+  const fromLabel = document.createElement("label");
+  fromLabel.textContent = "From";
+  fromLabel.className = "text-sm font-semibold";
 
-    const fromLabel = document.createElement("label");
-    fromLabel.textContent = "From";
-    fromLabel.className = "text-sm font-semibold";
+  const fromInput = document.createElement("input");
+  fromInput.type = "date";
+  fromInput.classList.add("input-field");
+  fromInput.classList.add("from-input");
 
-    const fromInput = document.createElement("input");
-    fromInput.type = "date";
-    fromInput.classList.add("input-field");
-    fromInput.classList.add("from-input");
+  fromGroup.appendChild(fromLabel);
+  fromGroup.appendChild(fromInput);
 
+  // to
+  const toGroup = document.createElement("div");
+  toGroup.className = "flex flex-col gap-1";
 
-    fromGroup.appendChild(fromLabel);
-    fromGroup.appendChild(fromInput);
+  const toLabel = document.createElement("label");
+  toLabel.textContent = "To";
+  toLabel.className = "text-sm font-semibold";
 
-    // to
-    const toGroup = document.createElement("div");
-    toGroup.className = "flex flex-col gap-1";
+  const toInput = document.createElement("input");
+  toInput.type = "date";
+  toInput.classList.add("input-field");
+  toInput.classList.add("to-input");
 
-    const toLabel = document.createElement("label");
-    toLabel.textContent = "To";
-    toLabel.className = "text-sm font-semibold";
+  toGroup.appendChild(toLabel);
+  toGroup.appendChild(toInput);
 
-    const toInput = document.createElement("input");
-    toInput.type = "date";
-    toInput.classList.add("input-field");
-    toInput.classList.add("to-input");
+  expBox.appendChild(expInput);
 
-    toGroup.appendChild(toLabel);
-    toGroup.appendChild(toInput);
+  const datesRow = document.createElement("div");
+  datesRow.className = "grid grid-cols-2 gap-4";
+  datesRow.appendChild(fromGroup);
+  datesRow.appendChild(toGroup);
 
-    expBox.appendChild(expInput);
+  expBox.appendChild(datesRow);
 
-    const datesRow = document.createElement("div");
-    datesRow.className = "grid grid-cols-2 gap-4";
-    datesRow.appendChild(fromGroup);
-    datesRow.appendChild(toGroup);
-
-    expBox.appendChild(datesRow);
-
-    experienceContainer.appendChild(expBox);
-
+  experienceContainer.appendChild(expBox);
 });
 
 // ================== Functions =============
