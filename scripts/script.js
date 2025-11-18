@@ -19,6 +19,7 @@ function saveToLocalStorage() {
 // ================= Modals ===================
 const workerModal = document.getElementById("modal-add-worker");
 const profileModal = document.getElementById("modal-profile");
+const selectModal = document.getElementById("select-modal");
 
 // ================= Buttons ===================
 const btnAddWorker = document.getElementById("btn-open-modal");
@@ -26,13 +27,18 @@ const btnCloseModal = document.getElementById("btn-close-modal");
 const btnSaveEmployee = document.getElementById("btn-save-employee");
 const btnAddExperience = document.getElementById("btn-add-experience");
 const btnCloseProfile = document.getElementById("btn-close-profile");
+const btnCloseSelectModal = document.getElementById("btn-close-select-modal");
+
+const btnAddZone = document.querySelector(".zone-btn-add");
 
 // ================= Input =====================
 const nameInput = document.getElementById("name-input");
 const phoneInput = document.getElementById("phone-input");
 const emailInput = document.getElementById("email-input");
 const photoInput = document.getElementById("photo-input");
+
 const roleSelect = document.getElementById("role-select");
+const listSelect = document.getElementById("select-list");
 
 const imgProfile = document.getElementById("img-profile");
 
@@ -49,14 +55,15 @@ console.log(btnAddWorker);
 console.log(workerModal);
 
 // =========== Event Listener ===================
-btnAddWorker.addEventListener("click", (e) => {
-  console.log("clicked");
-  workerModal.classList.remove("hidden");
-});
-btnCloseModal.addEventListener("click", (e) => {
-  console.log("clicked");
-  workerModal.classList.add("hidden");
-});
+btnAddWorker.addEventListener("click", (e) =>
+  workerModal.classList.remove("hidden")
+);
+btnCloseModal.addEventListener("click", (e) =>
+  workerModal.classList.add("hidden")
+);
+btnCloseSelectModal.addEventListener("click", () =>
+  selectModal.classList.add("hidden")
+);
 
 btnSaveEmployee.addEventListener("click", (e) => {
   const name = nameInput.value.trim();
@@ -189,18 +196,17 @@ function showProfile(id) {
 
 function assignEmployeeToZone(id, zoneName) {
   const emp = employees.find((e) => e.id == id);
-  if(!emp)
-    return;
+  if (!emp) return;
 
   const zone = document.querySelector(`.zone[data-zone="${zoneName}"]`);
   const limit = parseInt(zone.dataset.limit);
-  const currentCount = employees.filter(e=>e.zone === zoneName).length;
+  const currentCount = employees.filter((e) => e.zone === zoneName).length;
 
-  if(currentCount>=limit){
+  if (currentCount >= limit) {
     alert(`Zone limit reached! (-`);
     return;
   }
-  if(!canAssign(emp.role,zoneName)){
+  if (!canAssign(emp.role, zoneName)) {
     alert(`${emp.role} can't be assigned to this zone! (-`);
     return;
   }
@@ -261,21 +267,30 @@ function renderZones() {
       const div = document.createElement("div");
       div.classList.add(
         "bg-white",
-        "p-1",
-        "rounder",
+        "p-2",
+        "rounded",
         "mb-1",
         "flex",
+        "flex-col",
         "items-center",
-        "justify-between",
-        "cursor-pointer"
+        "cursor-pointer",
+        "w-fit",
+        "bg-black/30"
       );
       div.dataset.id = emp.id;
-
       div.innerHTML = `
-      <img src= ${emp.photo} class = "w-16 h-16">
-        <span class="truncate">${emp.name} (${emp.role})</span>
-        <button class="text-red-500 font-bold">X</button>
-      `;
+  <img src="${emp.photo}" class="w-12 h-12 rounded-full object-cover mb-1" />
+
+  <span class="truncate text-sm text-center mb-1">
+    ${emp.name}
+  </span>
+
+  <button class="
+      w-6 h-6 flex items-center justify-center
+      bg-red-500 text-white rounded-full text-xs font-bold
+  ">X</button>
+`;
+
       // when the user click on X
       div.querySelector("button").addEventListener("click", () => {
         emp.zone = null;
@@ -293,6 +308,64 @@ function renderZones() {
   });
 }
 
+// ======== zone assign ==========
+zones.forEach((zone) => {
+  const addBtn = zone.querySelector(".zone-btn-add");
+  addBtn.addEventListener("click", () => {
+    console.log("button clicked");
+    console.log(zone.dataset.zone);
+
+    const zoneName = zone.dataset.zone;
+    showSelectModal(zoneName);
+  });
+});
+
+function showSelectModal(zoneName) {
+  console.log(zoneName);
+
+  const limit = parseInt(
+    document.querySelector(`.zone[data-zone="${zoneName}"]`).dataset.limit
+  );
+  console.log(limit);
+
+  const currentCount = employees.filter((e) => e.zone === zoneName).length;
+  console.log(currentCount);
+
+  listSelect.innerHTML = "";
+
+  const allowEmployees = employees
+    .filter((e) => !e.zone)
+    .filter((emp) => canAssign(emp.role, zoneName));
+  console.log(allowEmployees);
+
+  allowEmployees.forEach((emp) => {
+    const li = document.createElement("li");
+    li.classList.add(
+      "flex",
+      "items-center",
+      "justify-between",
+      "bg-gray-100",
+      "p-2",
+      "rounded",
+      "cursor-pointer"
+    );
+    li.textContent = `${emp.name} (${emp.role})`;
+
+    li.addEventListener("click", () => {
+      if (currentCount >= limit) {
+        alert("Zone limit reached! (-");
+        return;
+      }
+      assignEmployeeToZone(emp.id, zoneName);
+      selectModal.classList.add("hidden");
+    });
+
+    listSelect.appendChild(li);
+  });
+
+  selectModal.classList.remove("hidden");
+}
+
 // =============== Role Rules ============
 function canAssign(role, zoneName) {
   const r = role.toLowerCase();
@@ -302,25 +375,27 @@ function canAssign(role, zoneName) {
   }
   // cleaning
   if (r === "cleaning") {
-    return zone !== "archives";
+    return zoneName !== "archives";
   }
 
   // receptionist
   if (r === "receptionist") {
-    return zone === "reception";
+    console.log(r);
+
+    return zoneName === "reception";
   }
 
   // it
   if (r === "it") {
-    return zone === "servers";
+    return zoneName === "servers";
   }
   // security
   if (r === "security") {
-    return zone === "security";
+    return zoneName === "security";
   }
 
   if (r === "other") {
-    return zone === "conference" || zone === "staff";
+    return zoneName === "conference" || zoneName === "staff";
   }
 
   // default access dinied
@@ -329,3 +404,4 @@ function canAssign(role, zoneName) {
 
 // Run
 loadFrmLocalStorage();
+renderZones();
