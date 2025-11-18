@@ -88,18 +88,11 @@ btnSaveEmployee.addEventListener("click", (e) => {
   console.log(employees);
 });
 
-photoInput.addEventListener("input", () => {
-  const url = photoInput.value;
-  if (url) {
-    imgProfile.src = url;
-    console.log(imgProfile);
-  }
-});
+btnAddExperience.addEventListener('click', () => {
 
-btnAddExperience.addEventListener("click", () => {
-  // exp box
-  const expBox = document.createElement("div");
-  expBox.className = "p-3 border rounded-lg bg-gray-50 space-y-2";
+    // exp box
+    const expBox = document.createElement("div");
+    expBox.className = "p-3 border rounded-lg bg-gray-50 space-y-2";
 
   const expInput = document.createElement("input");
   expInput.type = "text";
