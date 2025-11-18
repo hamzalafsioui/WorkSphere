@@ -13,9 +13,9 @@
   <body class="min-h-screen flex overflow-auto bg-gray-100">
     <!-- sideBare -->
     <aside
-      class="w-[25%] md:w-[25%] bg-white shadow-2xl p-4 flex flex-col gap-4 relative"
+      class="w-[18%] md:w-[18%] bg-white shadow-2xl p-4 flex flex-col gap-4 relative"
     >
-      <h2 class="text-xl font-bold">Unassigned Staff</h2>
+      <h2 class="text-sm md:text-xl font-bold">Unassigned Staff</h2>
       <input
         type="text"
         id="search-input"
@@ -36,117 +36,118 @@
       </button>
     </aside>
     <!-- main  -->
-    <main class="flex-1 relative w-full">
-      <!-- style="background-image: url('./img/plan-69159a65c5684763515973.jpg')" -->
-      <img
-        src="./img/plan-69159a65c5684763515973.jpg"
-        alt=""
-        class="max-w-full h-screen"
-      />
+    <main class="flex-1 relative w-full h-screen">
       <div
         id="floor-plan"
-        class="absolute top-0 left-0 grid grid-cols-[38%_17%_22%_22%] grid-rows-[33.5%_32%_32.5%] w-full h-full bg-contain bg-no-repeat bg-top"
+        class="relative w-full h-full bg-cover bg-center"
+        style="background-image: url('./img/plan-69159a65c5684763515973.jpg')"
       >
-        <!-- zones -->
         <div
-          class="zone col-start-1 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="conference"
-          data-limit="6"
+          class="absolute top-0 left-0 grid grid-cols-[38%_17%_22%_23%] md:grid-cols-[38%_17%_22%_23%] grid-rows-[33.5%_30%_37.5%] md:grid-rows-[33.5%_32%_34.5%] w-full h-full bg-contain bg-no-repeat bg-top"
         >
+          <!-- zones -->
           <div
-            class="bg-blue-600 w-[99%] text-center text-white text-xs px-2 py-1"
+            class="zone col-start-1 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="conference"
+            data-limit="6"
           >
-            Conference Room
-          </div>
-          <button
-            class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
-          >
-            +
-          </button>
+            <div
+              class="bg-blue-600 w-[99%] text-center text-white text-xs px-2 py-1"
+            >
+              Conference Room
+            </div>
+            <button
+              class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
 
-          <div class="zone-content"></div>
-        </div>
-        <div
-          class="zone col-start-1 row-start-2 row-span-2 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="reception"
-          data-limit="5"
-        >
-          <div
-            class="bg-amber-400 w-[99%] text-center text-white text-xs px-2 py-1"
-          >
-            Reception
+            <div class="zone-content"></div>
           </div>
-          <button
-            class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+          <div
+            class="zone col-start-1 row-start-2 row-span-2 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="reception"
+            data-limit="5"
           >
-            +
-          </button>
+            <div
+              class="bg-amber-400 w-[99%] text-center text-white text-xs px-2 py-1"
+            >
+              Reception
+            </div>
+            <button
+              class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
 
-          <div class="zone-content"></div>
-        </div>
-        <div
-          class="zone col-start-3 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="servers"
-          data-limit="4"
-        >
+            <div class="zone-content"></div>
+          </div>
           <div
-            class="bg-green-500 w-[99%] text-center text-white text-xs px-2 py-1"
+            class="zone col-start-3 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="servers"
+            data-limit="4"
           >
-            Server Room
+            <div
+              class="bg-green-500 w-[99%] text-center text-white text-xs px-2 py-1"
+            >
+              Server Room
+            </div>
+            <button
+              class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
+            <div class="zone-content"></div>
           </div>
-          <button
-            class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
-          >
-            +
-          </button>
-          <div class="zone-content"></div>
-        </div>
-        <div
-          class="zone col-start-4 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="security"
-          data-limit="2"
-        >
           <div
-            class="bg-amber-700 w-full text-center text-white text-xs px-2 py-1"
+            class="zone col-start-4 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="security"
+            data-limit="2"
           >
-            Security Room
+            <div
+              class="bg-amber-700 w-full text-center text-white text-xs px-2 py-1"
+            >
+              Security Room
+            </div>
+            <button
+              class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
+            <div class="zone-content"></div>
           </div>
-          <button
-            class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+          <div
+            class="zone col-start-3 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="staff"
+            data-limit="3"
           >
-            +
-          </button>
-          <div class="zone-content"></div>
-        </div>
-        <div
-          class="zone col-start-3 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="staff"
-          data-limit="3"
-        >
-          <div class="bg-cyan-500 text-center text-white text-xs px-2 py-1">
-            Staff Room
+            <div class="bg-cyan-500 text-center text-white text-xs px-2 py-1">
+              Staff Room
+            </div>
+            <button
+              class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
+            <div class="zone-content"></div>
           </div>
-          <button
-            class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+          <div
+            class="zone col-start-4 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
+            data-zone="archives"
+            data-limit="4"
           >
-            +
-          </button>
-          <div class="zone-content"></div>
-        </div>
-        <div
-          class="zone col-start-4 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
-          data-zone="archives"
-          data-limit="4"
-        >
-          <div class="bg-fuchsia-600 text-center text-white text-xs px-2 py-1">
-            Archives
+            <div
+              class="bg-fuchsia-600 text-center text-white text-xs px-2 py-1"
+            >
+              Archives
+            </div>
+            <button
+              class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+            >
+              +
+            </button>
+            <div class="zone-content"></div>
           </div>
-          <button
-            class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
-          >
-            +
-          </button>
-          <div class="zone-content"></div>
         </div>
       </div>
     </main>
@@ -264,7 +265,12 @@
           <ul id="profile-experiences" class="list-disc pl-5"></ul>
         </div>
 
-        <button id="btn-close-profile" class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600">Close</button>
+        <button
+          id="btn-close-profile"
+          class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
+        >
+          Close
+        </button>
       </div>
     </div>
   </body>
