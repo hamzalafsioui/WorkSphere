@@ -187,6 +187,30 @@ function showProfile(id) {
   profileModal.classList.remove("hidden");
 }
 
+function assignEmployeeToZone(id, zoneName) {
+  const emp = employees.find((e) => e.id == id);
+  if(!emp)
+    return;
+
+  const zone = document.querySelector(`.zone[data-zone="${zoneName}"]`);
+  const limit = parseInt(zone.dataset.limit);
+  const currentCount = employees.filter(e=>e.zone === zoneName).length;
+
+  if(currentCount>=limit){
+    alert(`Zone limit reached! (-`);
+    return;
+  }
+  if(!canAssign(emp.role,zoneName)){
+    alert(`${emp.role} can't be assigned to this zone! (-`);
+    return;
+  }
+  emp.zone = zoneName;
+  renderUnassigned();
+  renderZones();
+  saveToLocalStorage();
+}
+
+// =========== render Functions ============
 function renderUnassigned() {
   unassignedList.innerHTML = "";
   const filtered = employees.filter((e) => !e.zone);
@@ -294,7 +318,7 @@ function canAssign(role, zoneName) {
   if (r === "security") {
     return zone === "security";
   }
-  
+
   if (r === "other") {
     return zone === "conference" || zone === "staff";
   }
