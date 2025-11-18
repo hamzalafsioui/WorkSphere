@@ -6,6 +6,13 @@ let experienceContainer = document.getElementById("experience-container");
 console.log(zones);
 console.log(unassignedList);
 // ============== Local Storage ================
+function loadFrmLocalStorage(){
+  const data = localStorage.getItem('employees') || [];
+  if(data){
+    employees = JSON.parse(data);
+    renderUnassigned();
+  }
+}
 function saveToLocalStorage() {
   localStorage.setItem("employees", JSON.stringify(employees));
 }
@@ -186,3 +193,7 @@ function renderUnassigned() {
     unassignedList.appendChild(li);
   });
 }
+
+
+// Run 
+loadFrmLocalStorage();
