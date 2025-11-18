@@ -269,5 +269,39 @@ function renderZones() {
   });
 }
 
+// =============== Role Rules ============
+function canAssign(role, zoneName) {
+  const r = role.toLowerCase();
+  // manager
+  if (r === "manager") {
+    return true;
+  }
+  // cleaning
+  if (r === "cleaning") {
+    return zone !== "archives";
+  }
+
+  // receptionist
+  if (r === "receptionist") {
+    return zone === "reception";
+  }
+
+  // it
+  if (r === "it") {
+    return zone === "servers";
+  }
+  // security
+  if (r === "security") {
+    return zone === "security";
+  }
+  
+  if (r === "other") {
+    return zone === "conference" || zone === "staff";
+  }
+
+  // default access dinied
+  return false;
+}
+
 // Run
 loadFrmLocalStorage();
