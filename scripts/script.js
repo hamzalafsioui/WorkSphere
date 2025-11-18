@@ -45,13 +45,29 @@ btnSaveEmployee.addEventListener("click", (e) => {
   const photo = photoInput.value.trim() || "default photo";
   const role = roleSelect.value;
 
+  // catch all exp
+  const expBoxes = document.querySelectorAll("#experience-container > div");
+  const experiences = [];
+expBoxes.forEach((box)=>{
+    const title = box.querySelector(".exp-input")?.value.trim() || "";
+    const from = box.querySelector(".from-input")?.value || "";
+    const to = box.querySelector(".to-input")?.value || "";
+    if(title != ""){
+        experiences.push({
+            title,
+            from,
+            to,
+        });
+    }
+})
+
   employees.push({
     id: Date.now(),
-    name: name,
-    phone: phone,
-    email: email,
-    role: role,
-    experiences: {},
+    name,
+    phone,
+    email,
+    role,
+    experiences,
   });
 
   workerModal.classList.add("hidden");
@@ -71,6 +87,7 @@ btnAddExperience.addEventListener('click', () => {
     expInput.type = "text";
     expInput.placeholder = "Experience / Job Title";
     expInput.classList.add("input-field", "w-full");
+    expInput.classList.add("exp-input");
 
     // from
     const fromGroup = document.createElement("div");
@@ -83,6 +100,8 @@ btnAddExperience.addEventListener('click', () => {
     const fromInput = document.createElement("input");
     fromInput.type = "date";
     fromInput.classList.add("input-field");
+    fromInput.classList.add("from-input");
+
 
     fromGroup.appendChild(fromLabel);
     fromGroup.appendChild(fromInput);
@@ -98,6 +117,7 @@ btnAddExperience.addEventListener('click', () => {
     const toInput = document.createElement("input");
     toInput.type = "date";
     toInput.classList.add("input-field");
+    toInput.classList.add("to-input");
 
     toGroup.appendChild(toLabel);
     toGroup.appendChild(toInput);
@@ -122,7 +142,7 @@ function clearModalFields() {
   emailInput.value = "";
   phoneInput.value = "";
   photoInput.value = "";
-  // clear experiences
+  experienceContainer.innerHTML = "";
 }
 
 function renderUnassigned() {
