@@ -114,16 +114,13 @@ btnSaveEmployee.addEventListener("click", (e) => {
 });
 
 photoInput.addEventListener("change", () => {
-  imgProfile.src = phoneInput.value.trim();
+  imgProfile.src = photoInput.value.trim();
+  console.log(imgProfile);
 });
 
 imgProfile.onerror = () => {
-  const defaultUrl =
+  imgProfile.src =
     "https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU";
-
-  imgProfile.src = defaultUrl;
-  // photoInput.value = defaultUrl;
-  // photo = imgProfile.src;
 };
 
 btnAddExperience.addEventListener("click", () => {
@@ -192,6 +189,7 @@ function clearModalFields() {
   phoneInput.value = "";
   photoInput.value = "";
   experienceContainer.innerHTML = "";
+  imgProfile.src = "";
 }
 
 function showProfile(id) {
