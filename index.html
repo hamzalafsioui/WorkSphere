@@ -57,12 +57,14 @@
               Conference Room
             </div>
             <button
-              class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
 
-            <div class="zone-content"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+            ></div>
           </div>
           <div
             class="zone col-start-1 row-start-2 row-span-2 bg-amber-300/15 relative hover:bg-red-500/30"
@@ -75,12 +77,14 @@
               Reception
             </div>
             <button
-              class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
 
-            <div class="zone-content"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+            ></div>
           </div>
           <div
             class="zone col-start-3 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
@@ -93,11 +97,13 @@
               Server Room
             </div>
             <button
-              class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
-            <div class="zone-content"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+            ></div>
           </div>
           <div
             class="zone col-start-4 row-start-1 bg-amber-300/15 relative hover:bg-red-500/30"
@@ -110,11 +116,11 @@
               Security Room
             </div>
             <button
-              class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
-            <div class="zone-content"></div>
+            <div class="zone-content flex flex-wrap gap-2"></div>
           </div>
           <div
             class="zone col-start-3 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
@@ -125,11 +131,13 @@
               Staff Room
             </div>
             <button
-              class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
-            <div class="zone-content"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+            ></div>
           </div>
           <div
             class="zone col-start-4 row-start-3 bg-amber-300/15 relative hover:bg-red-500/30"
@@ -142,11 +150,13 @@
               Archives
             </div>
             <button
-              class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold"
+              class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
             >
               +
             </button>
-            <div class="zone-content"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+            ></div>
           </div>
         </div>
       </div>
@@ -171,9 +181,12 @@
         <div class="field flex flex-col gap-2">
           <label for="role-select">Role</label>
           <select name="role" id="role-select" class="input-field">
+            <option value="Receptionist">Receptionist</option>
             <option value="IT">IT</option>
-            <option value="IT2">IT 2</option>
-            <option value="IT3">IT 3</option>
+            <option value="Security">Security</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Manager">Manager</option>
+            <option value="Other">Other (Invited)</option>
           </select>
         </div>
         <div class="field flex flex-col gap-2">
@@ -185,7 +198,7 @@
           />
           <img
             id="img-profile"
-            src="./img/plan-69159a65c5684763515973.jpg"
+            src="https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
             class="w-16 h-16 rounded-[50%] object-cover"
             alt=""
           />
@@ -268,6 +281,27 @@
         <button
           id="btn-close-profile"
           class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal to select employee for zone  -->
+    <div
+      id="select-modal"
+      class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-50"
+    >
+      <div class="bg-white p-6 rounded shadow-xl w-80 space-y-3">
+        <h2 class="text-lg font-bold">Assign Employee</h2>
+
+        <ul id="select-list" class="space-y-2 max-h-64 overflow-y-auto">
+          <!-- Injected by JS -->
+        </ul>
+
+        <button
+          id="btn-close-select-modal"
+          class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600 mt-1"
         >
           Close
         </button>
