@@ -266,7 +266,6 @@ function renderZones() {
     zoneEmployees.forEach((emp) => {
       const div = document.createElement("div");
       div.classList.add(
-        "bg-white",
         "p-2",
         "rounded",
         "mb-1",
@@ -275,19 +274,17 @@ function renderZones() {
         "items-center",
         "cursor-pointer",
         "w-fit",
-        "bg-black/30"
+        "bg-black/0"
       );
       div.dataset.id = emp.id;
       div.innerHTML = `
-  <img src="${emp.photo}" class="w-12 h-12 rounded-full object-cover mb-1" />
+  <img src="${emp.photo}" title = ${emp.name} class="w-12 h-12 rounded-full object-cover mb-1" />
 
-  <span class="truncate text-sm text-center mb-1">
-    ${emp.name}
-  </span>
+  
 
   <button class="
       w-6 h-6 flex items-center justify-center
-      bg-red-500 text-white rounded-full text-xs font-bold
+      bg-red-500 text-white rounded-full text-xs font-bold cursor-pointer opacity-0
   ">X</button>
 `;
 
@@ -298,9 +295,16 @@ function renderZones() {
         renderZones();
         saveToLocalStorage();
       });
-      // when the user click on the profile
+      div.querySelector("img").addEventListener("mouseover", () => {
+        div.querySelector("button").style.opacity = 1;
+        console.log("mouse hover");
+      });
+      div.addEventListener("mouseleave", () => {
+        div.querySelector("button").style.opacity = 0;
+      });
+
       div
-        .querySelector("span")
+        .querySelector("img")
         .addEventListener("click", () => showProfile(emp.id));
 
       container.appendChild(div);
