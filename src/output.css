@@ -399,8 +399,20 @@
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .grid-cols-\[38\%_17\%_21\%_23\%\] {
+    grid-template-columns: 38% 17% 21% 23%;
+  }
   .grid-cols-\[38\%_17\%_22\%_23\%\] {
     grid-template-columns: 38% 17% 22% 23%;
+  }
+  .grid-cols-\[38\%_17\%_22\%_25\%\] {
+    grid-template-columns: 38% 17% 22% 25%;
+  }
+  .grid-cols-\[38\%_18\%_22\%_23\%\] {
+    grid-template-columns: 38% 18% 22% 23%;
+  }
+  .grid-cols-\[38\%_19\%_22\%_23\%\] {
+    grid-template-columns: 38% 19% 22% 23%;
   }
   .grid-rows-\[33\.5\%_30\%_37\.5\%\] {
     grid-template-rows: 33.5% 30% 37.5%;
@@ -786,9 +798,34 @@
       width: 150px;
     }
   }
+  .md\:grid-cols-\[38\%_15\%_22\%_23\%\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 38% 15% 22% 23%;
+    }
+  }
+  .md\:grid-cols-\[38\%_16\.5\%_22\%_23\%\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 38% 16.5% 22% 23%;
+    }
+  }
+  .md\:grid-cols-\[38\%_17\%_\%_23\%\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 38% 17% % 23%;
+    }
+  }
+  .md\:grid-cols-\[38\%_17\%_10\%_23\%\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 38% 17% 10% 23%;
+    }
+  }
   .md\:grid-cols-\[38\%_17\%_22\%_23\%\] {
     @media (width >= 48rem) {
       grid-template-columns: 38% 17% 22% 23%;
+    }
+  }
+  .md\:grid-cols-\[38\%_17\%_29\%_23\%\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 38% 17% 29% 23%;
     }
   }
   .md\:grid-rows-\[33\.5\%_32\%_34\.5\%\] {
