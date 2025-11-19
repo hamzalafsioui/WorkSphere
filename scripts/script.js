@@ -69,10 +69,9 @@ btnSaveEmployee.addEventListener("click", (e) => {
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
   const phone = phoneInput.value.trim();
-  const photo = photoInput.value.trim() || "default photo";
+  const photo = photoInput.value.trim();
   const role = roleSelect.value;
 
-  
   // catch all exp
   const expBoxes = document.querySelectorAll("#experience-container > div");
   const experiences = [];
@@ -80,7 +79,7 @@ btnSaveEmployee.addEventListener("click", (e) => {
     const title = box.querySelector(".exp-input")?.value.trim() || "";
     const from = box.querySelector(".from-input")?.value || "";
     const to = box.querySelector(".to-input")?.value || "";
-    if (title != "") {
+    if (title != "" && from != "" && to != "") {
       experiences.push({
         title,
         from,
@@ -89,12 +88,19 @@ btnSaveEmployee.addEventListener("click", (e) => {
     }
   });
 
+  if (!validationInputs(name, email, phone, experiences)) {
+    console.log("not valid inputs");
+
+    return;
+  }
+  console.log("valid inputs");
+
   employees.push({
     id: Date.now(),
     name,
     phone,
     email,
-    photo,
+    photo: imgProfile.src,
     role,
     experiences,
     zone: null,
@@ -107,10 +113,18 @@ btnSaveEmployee.addEventListener("click", (e) => {
   console.log(employees);
 });
 
-photoInput.addEventListener('change',()=>imgProfile.src = phoneInput.value);
-imgProfile.onerror = ()=>{
-  imgProfile.src = "https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
-}
+photoInput.addEventListener("change", () => {
+  imgProfile.src = phoneInput.value.trim();
+});
+
+imgProfile.onerror = () => {
+  const defaultUrl =
+    "https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU";
+
+  imgProfile.src = defaultUrl;
+  // photoInput.value = defaultUrl;
+  // photo = imgProfile.src;
+};
 
 btnAddExperience.addEventListener("click", () => {
   // exp box
@@ -220,6 +234,45 @@ function assignEmployeeToZone(id, zoneName) {
   renderUnassigned();
   renderZones();
   saveToLocalStorage();
+}
+
+// =============== Validation =======================
+
+function validationInputs(name, email, phone, exps) {
+  // Name
+  if (!name || name.length < 2) {
+    alert("Name must be at least 2 characters");
+    return false;
+  }
+
+  // Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email === "" || !emailRegex.test(email)) {
+    alert("Invalid email format");
+    return false;
+  }
+
+  // Phone
+  const phoneRegex = /^[0-9+\-\s]{6,15}$/;
+  if (phone === "" || !phoneRegex.test(phone)) {
+    alert("Invalid phone number");
+    return false;
+  }
+
+  // Experiences [from < to]
+  for (let exp of exps) {
+    if (!validateDates(exp.from, exp.to)) {
+      alert(`Experience "${exp.title}": 'From' date must be before 'To' date`);
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function validateDates(from, to) {
+  if (!from || !to) return false;
+  return new Date(from) < new Date(to);
 }
 
 // =========== render Functions ============
