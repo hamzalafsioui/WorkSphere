@@ -72,6 +72,7 @@ btnSaveEmployee.addEventListener("click", (e) => {
   const photo = photoInput.value.trim() || "default photo";
   const role = roleSelect.value;
 
+  
   // catch all exp
   const expBoxes = document.querySelectorAll("#experience-container > div");
   const experiences = [];
@@ -105,6 +106,11 @@ btnSaveEmployee.addEventListener("click", (e) => {
   saveToLocalStorage();
   console.log(employees);
 });
+
+photoInput.addEventListener('change',()=>imgProfile.src = phoneInput.value);
+imgProfile.onerror = ()=>{
+  imgProfile.src = "https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
+}
 
 btnAddExperience.addEventListener("click", () => {
   // exp box
