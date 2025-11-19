@@ -20,11 +20,11 @@
         type="text"
         id="search-input"
         placeholder="search by name or role"
-        class="p-2 boreder rounded w-full text-sm"
+        class="p-1 boreder rounded w-full text-sm"
       />
       <ul
         id="unassigned-list"
-        class="flex flex-col gap-2 overflow-y-auto h-full pr-1"
+        class="flex flex-col gap-2 overflow-y-auto h-full pr-1 mt-4"
       >
         <!-- fill from js -->
       </ul>
@@ -37,13 +37,14 @@
     </aside>
     <!-- main  -->
     <main class="flex-1 relative w-full h-screen">
-      <div
-        id="floor-plan"
-        class="relative w-full h-full bg-cover bg-center"
-        style="background-image: url('./img/plan-69159a65c5684763515973.jpg')"
-      >
+      <div id="floor-plan" class="relative w-full h-full">
+        <img
+          src="./img/plan-69159a65c5684763515973.jpg"
+          class="absolute inset-0 w-full h-full object-contain"
+          alt="floor plan"
+        />
         <div
-          class="absolute top-0 left-0 grid grid-cols-[38%_17%_22%_23%] md:grid-cols-[38%_17%_22%_23%] grid-rows-[33.5%_30%_37.5%] md:grid-rows-[33.5%_32%_34.5%] w-full h-full bg-contain bg-no-repeat bg-top"
+          class="absolute inset-0 grid grid-cols-[38%_17%_22%_23%] md:grid-cols-[38%_17%_22%_23%] grid-rows-[33.5%_30%_37.5%] md:grid-rows-[33.5%_32%_34.5%] w-full h-full"
         >
           <!-- zones -->
           <div

@@ -280,22 +280,45 @@ function renderUnassigned() {
   filtered.forEach((emp) => {
     const li = document.createElement("li");
     li.classList.add(
+      "relative",
       "flex",
       "items-center",
       "justify-between",
       "bg-gray-100",
-      "p-3",
+      "p-1",
       "rounded",
       "shadow-sm"
     );
     li.dataset.id = emp.id;
     li.innerHTML = `
-     <div class="flex flex-col md:flex-row items-center gap-1 md:gap-2">
-        <img src="${emp.photo}" class=" w-8 h-8 md:w-10 md:h-10 rounded object-cover">
-        <span class = "text-xs sm:text-sm font-normal md:font-semibold cursor-pointer">${emp.name} (${emp.role})</span>
-      </div>
-      <button class="text-red-600 font-bold p-1 text-sm md:text-base cursor-pointer">X</button>
-    `;
+  <div class="flex items-center gap-1">
+    <img src="${emp.photo}" 
+         class="w-6 h-6 md:w-10 md:h-10 rounded-full object-cover">
+
+    <span class="text-[8px] sm:text-[10px] md:text-sm font-semibold cursor-pointer">
+      ${emp.name} (${emp.role})
+    </span>
+  </div>
+
+  <button class="
+    absolute -top-1 -right-1
+    w-5 h-5 md:w-6 md:h-6
+    flex items-center justify-center
+    opacity-0
+    bg-red-500 text-white
+    rounded-full
+    text-[10px] md:text-xs
+    font-bold
+    cursor-pointer
+  ">X</button>
+`;
+
+    li.addEventListener("mouseover", () => {
+      li.querySelector("button").style.opacity = 1;
+    });
+    li.addEventListener("mouseleave", () => {
+      li.querySelector("button").style.opacity = 0;
+    });
     li.querySelector("button").addEventListener("click", () => {
       employees = employees.filter((e) => e.id != emp.id);
       renderUnassigned();
@@ -322,37 +345,38 @@ function renderZones() {
 
     zoneEmployees.forEach((emp) => {
       const div = document.createElement("div");
-      div.classList.add(
-        "p-2",
-        "rounded",
-        "mb-1",
-        "flex",
-        "flex-col",
-        "items-center",
-        "cursor-pointer",
-        "w-fit",
-        "bg-black/0"
-      );
+      div.classList.add("zone-item");
       div.dataset.id = emp.id;
       div.innerHTML = `
-  <img src="${emp.photo}" title = ${emp.name} class="w-12 h-12 rounded-full object-cover mb-1" />
+  <div class="flex items-center gap-1 p-1 bg-white rounded shadow relative cursor-pointer 
+              w-[70px] md:w-[150px]">
 
-  
+      <img src="${emp.photo}" 
+           class="w-6 h-6 md:w-10 md:h-10 rounded-full object-cover">
 
-  <button class="
-      w-6 h-6 flex items-center justify-center
-      bg-red-500 text-white rounded-full text-xs font-bold cursor-pointer opacity-0
-  ">X</button>
+      <div class="flex flex-col leading-tight">
+          <span class="text-[8px] md:text-sm font-semibold">${emp.name}</span>
+          <span class="text-[6px] md:text-xs text-gray-600">${emp.role}</span>
+      </div>
+
+      <button class="
+          absolute -top-1 -right-1
+          w-4 h-4 md:w-5 md:h-5
+          flex items-center justify-center opacity-0
+          bg-red-500 text-white rounded-full text-[7px] md:text-xs font-bold
+      ">X</button>
+  </div>
 `;
 
       // when the user click on X
-      div.querySelector("button").addEventListener("click", () => {
+      div.querySelector("button").addEventListener("click", (e) => {
+        e.stopPropagation();
         emp.zone = null;
         renderUnassigned();
         renderZones();
         saveToLocalStorage();
       });
-      div.querySelector("img").addEventListener("mouseover", () => {
+      div.addEventListener("mouseover", () => {
         div.querySelector("button").style.opacity = 1;
         console.log("mouse hover");
       });
@@ -360,9 +384,7 @@ function renderZones() {
         div.querySelector("button").style.opacity = 0;
       });
 
-      div
-        .querySelector("img")
-        .addEventListener("click", () => showProfile(emp.id));
+      div.addEventListener("click", () => showProfile(emp.id));
 
       container.appendChild(div);
     });
