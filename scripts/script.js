@@ -263,27 +263,26 @@ function highlightEmptyRequiredZones() {
 }
 
 function autoAssignEmployees() {
- 
-  let unassigned = employees.filter(e=> ! e.zone);
+  let unassigned = employees.filter((e) => !e.zone);
 
-  zones.forEach(zone=>{
+  zones.forEach((zone) => {
     const zoneName = zone.dataset.zone;
     const limit = parseInt(zone.dataset.limit);
 
-    let currentCount = employees.filter(e=>e.zone === zoneName).length;
-    for(let emp of unassigned){
-      if(currentCount>= limit){
+    let currentCount = employees.filter((e) => e.zone === zoneName).length;
+    for (let emp of unassigned) {
+      if (currentCount >= limit) {
         break;
       }
 
-      if(canAssign(emp.role,zoneName)){
+      if (canAssign(emp.role, zoneName)) {
         emp.zone = zoneName;
         currentCount++;
       }
     }
-    unassigned = employees.filter(e=>!e.zone);
+    unassigned = employees.filter((e) => !e.zone);
   });
-    
+
   renderUnassigned();
   renderZones();
   highlightEmptyRequiredZones();
@@ -300,14 +299,14 @@ function validationInputs(name, email, phone, exps) {
   }
 
   // Email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /\S+@\S+\.\S+/;
   if (email === "" || !emailRegex.test(email)) {
     alert("Invalid email format");
     return false;
   }
 
   // Phone
-  const phoneRegex = /^[0-9+\-\s]{6,15}$/;
+  const phoneRegex = /^[0-9\s+()-]{6,20}$/;
   if (phone === "" || !phoneRegex.test(phone)) {
     alert("Invalid phone number");
     return false;
