@@ -232,6 +232,27 @@ function assignEmployeeToZone(id, zoneName) {
   renderUnassigned();
   renderZones();
   saveToLocalStorage();
+  highlightEmptyRequiredZones();
+}
+
+function highlightEmptyRequiredZones() {
+  zones.forEach((zone) => {
+    const zoneName = zone.dataset.zone;
+
+    // Exclusions conference && staff
+    if (zoneName === "conference" || zoneName === "staff") {
+      zone.classList.remove("bg-red-300/30");
+      return;
+    }
+
+    const employeesInZone = employees.filter((e) => e.zone === zoneName);
+
+    if (employeesInZone.length === 0) {
+      zone.classList.add("bg-red-300/30");
+    } else {
+      zone.classList.remove("bg-red-300/30");
+    }
+  });
 }
 
 // =============== Validation =======================
@@ -375,6 +396,7 @@ function renderZones() {
         renderUnassigned();
         renderZones();
         saveToLocalStorage();
+        highlightEmptyRequiredZones();
       });
       div.addEventListener("mouseover", () => {
         div.querySelector("button").style.opacity = 1;
@@ -488,3 +510,4 @@ function canAssign(role, zoneName) {
 // Run
 loadFrmLocalStorage();
 renderZones();
+highlightEmptyRequiredZones();
