@@ -36,6 +36,7 @@ const nameInput = document.getElementById("name-input");
 const phoneInput = document.getElementById("phone-input");
 const emailInput = document.getElementById("email-input");
 const photoInput = document.getElementById("photo-input");
+const searchInput = document.getElementById("search-input");
 
 const roleSelect = document.getElementById("role-select");
 const listSelect = document.getElementById("select-list");
@@ -181,6 +182,9 @@ btnCloseProfile.addEventListener("click", () =>
   profileModal.classList.add("hidden")
 );
 
+searchInput.addEventListener("input", () => {
+  renderUnassigned();
+});
 // ================== Functions =============
 
 function clearModalFields() {
@@ -297,7 +301,15 @@ function validateDates(from, to) {
 // =========== render Functions ============
 function renderUnassigned() {
   unassignedList.innerHTML = "";
-  const filtered = employees.filter((e) => !e.zone);
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  const filtered = employees
+    .filter((e) => !e.zone)
+    .filter(
+      (e) =>
+        e.name.toLowerCase().includes(searchTerm) ||
+        e.role.toLowerCase().includes(searchTerm)
+    );
+
   filtered.forEach((emp) => {
     const li = document.createElement("li");
     li.classList.add(
