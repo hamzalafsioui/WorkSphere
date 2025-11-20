@@ -4,79 +4,87 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/output.css" />
+    <link rel="stylesheet" href="./style.css" />
     <!-- TailwindCSS -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- project script -->
     <script src="./scripts/script.js" defer></script>
     <title>Work Sphere</title>
   </head>
-  <body class="min-h-screen flex overflow-auto bg-gray-100">
-    <!-- sideBare -->
-    <aside
-      class="w-[18%] md:w-[18%] bg-white shadow-2xl p-4 flex flex-col gap-4 relative"
-    >
-      <h2 class="text-sm md:text-xl font-bold">Unassigned Staff</h2>
-      <button
-        id="btn-auto-assign"
-        class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600 transition"
-      >
-        assigne automatic
-      </button>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="search by name or role"
-        class="p-1 boreder rounded w-full text-sm"
-      />
-      <ul
-        id="unassigned-list"
-        class="flex flex-col gap-2 overflow-y-auto h-full pr-1 mt-4"
-      >
-        <!-- fill from js -->
-      </ul>
-      <button
-        id="btn-open-modal"
-        class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600 transition"
-      >
-        Add New Worker
-      </button>
-    </aside>
-    <!-- main  -->
-    <main class="flex-1 relative w-full h-screen">
-      <div id="floor-plan" class="relative w-full h-full">
-        <img
-          src="./img/plan-69159a65c5684763515973.jpg"
-          class="absolute inset-0 w-full h-full object-contain"
-          alt="floor plan"
-        />
-        <div
-          class="absolute inset-0 grid grid-cols-[38%_17%_22%_23%] md:grid-cols-[38%_16.5%_22%_23%] grid-rows-[33.5%_30%_37.5%] md:grid-rows-[33.5%_32%_34.5%] w-full h-full"
+  <body class="bg-gray-100">
+    <header>
+      <h1 class="text-center font-bold text-3xl p-2">Virtual Workspace</h1>
+    </header>
+
+    <main class="flex flex-col-reverse md:flex-row">
+      <!-- sideBare -->
+      <aside class="w-full md:w-80 h-auto bg-white shadow-lg p-6">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Unassigned Staff</h2>
+        <button
+          id="btn-auto-assign"
+          class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600 transition"
         >
+          assigne automatic
+        </button>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="search by name or role"
+          class="p-1 mt-2 boreder rounded w-full text-sm"
+        />
+        <ul
+          id="unassigned-list"
+          class="flex flex-col gap-2 overflow-y-auto pr-1 mt-4"
+        >
+          <!-- fill from js -->
+        </ul>
+        <button
+          id="btn-open-modal"
+          class="bg-green-500 text-white w-full py-2 rounded mt-3 hover:bg-green-600 transition"
+        >
+          Add New Worker
+        </button>
+      </aside>
+      <!-- section  -->
+      <section
+        class="aspect-[16/10] w-[75%] mx-auto border-4 shadow-2xl rounded-2xl mb-6 md:mb-0"
+      >
+        <div
+          id="floor-plan"
+          class="relative grid w-full h-full grid-cols-[38%_17%_22%_23%] grid-rows-[34.5%_31%_32.5%]"
+        >
+          <img
+            src="./img/plan-69159a65c5684763515973.jpg"
+            class="absolute inset-0 w-full h-full"
+            alt="floor plan"
+          />
+
           <!-- zones -->
           <div
-            class="zone col-start-1 row-start-1 bg-amber-300/15 relative"
+            class="zone col-start-1 col-end-2 row-start-1 row-end-2 z-10 border-2 border-blue-600 relative"
             data-zone="conference"
             data-limit="6"
           >
             <div
-              class="bg-blue-600 w-[99%] text-center text-white text-xs px-2 py-1"
+              class="flex bg-blue-600 w-[99%] text-center text-white text-xs px-2 py-1"
             >
               Conference Room
             </div>
             <button
-              class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-blue-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-99"
             >
               +
             </button>
 
             <div
-              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
+              style="max-height: calc(100% - 1.5rem)"
             ></div>
           </div>
           <div
-            class="zone col-start-1 row-start-2 row-span-2 relative"
+            class="zone col-start-1 col-end-2 row-start-2 row-end-4 border-2 border-amber-400 relative"
             data-zone="reception"
-            data-limit="5"
+            data-limit="8"
           >
             <div
               class="bg-amber-400 w-[99%] text-center text-white text-xs px-2 py-1"
@@ -84,17 +92,18 @@
               Reception
             </div>
             <button
-              class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-amber-400 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-999"
             >
               +
             </button>
 
             <div
-              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
+              style="max-height: calc(100% - 1.5rem)"
             ></div>
           </div>
           <div
-            class="zone col-start-3 row-start-1 relative"
+            class="zone col-start-3 col-end-4 row-start-1 row-end-2 border-2 border-green-500 relative"
             data-zone="servers"
             data-limit="4"
           >
@@ -104,16 +113,17 @@
               Server Room
             </div>
             <button
-              class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-green-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-999"
             >
               +
             </button>
             <div
-              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
+              style="max-height: calc(100% - 1.5rem)"
             ></div>
           </div>
           <div
-            class="zone col-start-4 row-start-1 relative"
+            class="zone col-start-4 col-end-6 row-start-1 row-end-2 border-2 border-amber-700 relative"
             data-zone="security"
             data-limit="2"
           >
@@ -123,14 +133,17 @@
               Security Room
             </div>
             <button
-              class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-amber-700 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-999"
             >
               +
             </button>
-            <div class="zone-content flex flex-wrap gap-2"></div>
+            <div
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
+              style="max-height: calc(100% - 1.5rem)"
+            ></div>
           </div>
           <div
-            class="zone col-start-3 row-start-3 relative"
+            class="zone col-start-3 col-end-4 row-start-3 row-end-4 z-10 border-2 border-cyan-500 relative"
             data-zone="staff"
             data-limit="3"
           >
@@ -138,16 +151,16 @@
               Staff Room
             </div>
             <button
-              class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-cyan-500 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-999"
             >
               +
             </button>
             <div
-              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
             ></div>
           </div>
           <div
-            class="zone col-start-4 row-start-3 relative"
+            class="zone col-start-4 col-end-5 row-start-3 row-end-4 z-10 border-2 border-fuchsia-600 relative"
             data-zone="archives"
             data-limit="4"
           >
@@ -157,162 +170,165 @@
               Archives
             </div>
             <button
-              class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer"
+              class="zone-btn-add bg-fuchsia-600 rounded-full absolute top-[80%] right-[50%] px-1 text-white font-bold cursor-pointer z-999"
             >
               +
             </button>
             <div
-              class="zone-content mt-3 flex flex-wrap content-center justify-center items-center gap-2"
+              class="zone-content mt-3 flex flex-wrap content-start justify-center items-start gap-2 overflow-y-auto max-h-full"
+              style="max-height: calc(100% - 1.5rem)"
             ></div>
           </div>
         </div>
+      </section>
+
+      <!-- modal add new worker -->
+      <div
+        id="modal-add-worker"
+        class="fixed inset-0 overflow-y-auto bg-black/40 p-4 hidden z-99"
+      >
+        <div class="bg-white flex flex-col gap-4 p-4 w-[80%] md:w-[50%]">
+          <h2 class="text-xl font-bold">Add Employee</h2>
+          <div class="field flex flex-col gap-2">
+            <label for="name-input">Name</label>
+            <input
+              id="name-input"
+              type="text"
+              placeholder="Name"
+              class="input-field"
+            />
+          </div>
+          <div class="field flex flex-col gap-2">
+            <label for="role-select">Role</label>
+            <select name="role" id="role-select" class="input-field">
+              <option value="Receptionist">Receptionist</option>
+              <option value="IT">IT</option>
+              <option value="Security">Security</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Manager">Manager</option>
+              <option value="Other">Other (Invited)</option>
+            </select>
+          </div>
+          <div class="field flex flex-col gap-2">
+            <input
+              id="photo-input"
+              type="text"
+              placeholder="Photo URL"
+              class="input-field"
+            />
+            <img
+              id="img-profile"
+              src="https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
+              class="w-16 h-16 rounded-[50%] object-cover"
+              alt=""
+            />
+          </div>
+          <div class="field flex flex-col gap-2">
+            <label for="email-input">Email</label>
+            <input
+              id="email-input"
+              type="text"
+              placeholder="Email"
+              class="input-field"
+            />
+          </div>
+          <div class="field flex flex-col gap-2">
+            <label for="phone-input">Phone</label>
+            <input
+              id="phone-input"
+              type="text"
+              placeholder="Phone"
+              class="input-field"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Expériences</label>
+            <div id="experience-container" class="space-y-2"></div>
+
+            <button
+              id="btn-add-experience"
+              class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2 text-sm"
+            >
+              Add Experience
+            </button>
+          </div>
+
+          <div class="flex gap-4 pt-4">
+            <button
+              id="btn-close-modal"
+              class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
+            >
+              Cancel
+            </button>
+            <button
+              id="btn-save-employee"
+              class="bg-green-500 py-2 rounded px-2.5 hover:bg-green-600"
+            >
+              Save
+            </button>
+          </div>
+        </div>
       </div>
-    </main>
 
-    <!-- modal add new worker -->
-    <div
-      id="modal-add-worker"
-      class="fixed inset-0 overflow-y-auto bg-black/40 p-4 hidden z-99"
-    >
-      <div class="bg-white flex flex-col gap-4 p-4 w-[80%] md:w-[50%]">
-        <h2 class="text-xl font-bold">Add Employee</h2>
-        <div class="field flex flex-col gap-2">
-          <label for="name-input">Name</label>
-          <input
-            id="name-input"
-            type="text"
-            placeholder="Name"
-            class="input-field"
-          />
-        </div>
-        <div class="field flex flex-col gap-2">
-          <label for="role-select">Role</label>
-          <select name="role" id="role-select" class="input-field">
-            <option value="Receptionist">Receptionist</option>
-            <option value="IT">IT</option>
-            <option value="Security">Security</option>
-            <option value="Cleaning">Cleaning</option>
-            <option value="Manager">Manager</option>
-            <option value="Other">Other (Invited)</option>
-          </select>
-        </div>
-        <div class="field flex flex-col gap-2">
-          <input
-            id="photo-input"
-            type="text"
-            placeholder="Photo URL"
-            class="input-field"
-          />
+      <!-- Modal Show profil Info -->
+      <div
+        id="modal-profile"
+        class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-99"
+      >
+        <div
+          class="bg-white w-96 p-6 rounded shadow-xl max-h-[90vh] overflow-y-auto space-y-4"
+        >
           <img
-            id="img-profile"
-            src="https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
-            class="w-16 h-16 rounded-[50%] object-cover"
-            alt=""
+            id="profile-photo"
+            class="w-24 h-24 rounded-full mx-auto object-cover"
           />
-        </div>
-        <div class="field flex flex-col gap-2">
-          <label for="email-input">Email</label>
-          <input
-            id="email-input"
-            type="text"
-            placeholder="Email"
-            class="input-field"
-          />
-        </div>
-        <div class="field flex flex-col gap-2">
-          <label for="phone-input">Phone</label>
-          <input
-            id="phone-input"
-            type="text"
-            placeholder="Phone"
-            class="input-field"
-          />
-        </div>
 
-        <div>
-          <label class="font-semibold">Expériences</label>
-          <div id="experience-container" class="space-y-2"></div>
+          <h2 id="profile-name" class="text-2xl font-bold text-center"></h2>
+          <h3 id="profile-role" class="text-gray-600 text-center"></h3>
+
+          <div class="space-y-1">
+            <p><strong>Email :</strong> <span id="profile-email"></span></p>
+            <p><strong>Phone :</strong> <span id="profile-phone"></span></p>
+            <p>
+              <strong>Current Zone :</strong> <span id="profile-zone"></span>
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-bold">Experiences:</h4>
+            <ul id="profile-experiences" class="list-disc pl-5"></ul>
+          </div>
 
           <button
-            id="btn-add-experience"
-            class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2 text-sm"
-          >
-            Add Experience
-          </button>
-        </div>
-
-        <div class="flex gap-4 pt-4">
-          <button
-            id="btn-close-modal"
+            id="btn-close-profile"
             class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
           >
-            Cancel
-          </button>
-          <button
-            id="btn-save-employee"
-            class="bg-green-500 py-2 rounded px-2.5 hover:bg-green-600"
-          >
-            Save
+            Close
           </button>
         </div>
       </div>
-    </div>
 
-    <!-- Modal Show profil Info -->
-    <div
-      id="modal-profile"
-      class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-99"
-    >
+      <!-- Modal to select employee for zone  -->
       <div
-        class="bg-white w-96 p-6 rounded shadow-xl max-h-[90vh] overflow-y-auto space-y-4"
+        id="select-modal"
+        class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-50"
       >
-        <img
-          id="profile-photo"
-          class="w-24 h-24 rounded-full mx-auto object-cover"
-        />
+        <div class="bg-white p-6 rounded shadow-xl w-80 space-y-3">
+          <h2 class="text-lg font-bold">Assign Employee</h2>
 
-        <h2 id="profile-name" class="text-2xl font-bold text-center"></h2>
-        <h3 id="profile-role" class="text-gray-600 text-center"></h3>
+          <ul id="select-list" class="space-y-2 max-h-64 overflow-y-auto">
+            <!-- Injected by JS -->
+          </ul>
 
-        <div class="space-y-1">
-          <p><strong>Email :</strong> <span id="profile-email"></span></p>
-          <p><strong>Phone :</strong> <span id="profile-phone"></span></p>
-          <p><strong>Current Zone :</strong> <span id="profile-zone"></span></p>
+          <button
+            id="btn-close-select-modal"
+            class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600 mt-1"
+          >
+            Close
+          </button>
         </div>
-
-        <div>
-          <h4 class="font-bold">Experiences:</h4>
-          <ul id="profile-experiences" class="list-disc pl-5"></ul>
-        </div>
-
-        <button
-          id="btn-close-profile"
-          class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600"
-        >
-          Close
-        </button>
       </div>
-    </div>
-
-    <!-- Modal to select employee for zone  -->
-    <div
-      id="select-modal"
-      class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-50"
-    >
-      <div class="bg-white p-6 rounded shadow-xl w-80 space-y-3">
-        <h2 class="text-lg font-bold">Assign Employee</h2>
-
-        <ul id="select-list" class="space-y-2 max-h-64 overflow-y-auto">
-          <!-- Injected by JS -->
-        </ul>
-
-        <button
-          id="btn-close-select-modal"
-          class="bg-red-500 py-2 rounded px-2.5 hover:bg-red-600 mt-1"
-        >
-          Close
-        </button>
-      </div>
-    </div>
+    </main>
   </body>
 </html>
