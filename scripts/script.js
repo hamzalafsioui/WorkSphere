@@ -30,7 +30,7 @@ const btnCloseProfile = document.getElementById("btn-close-profile");
 const btnCloseSelectModal = document.getElementById("btn-close-select-modal");
 
 const btnAddZone = document.querySelector(".zone-btn-add");
-
+const btnAutoAssign = document.getElementById("btn-auto-assign");
 // ================= Input =====================
 const nameInput = document.getElementById("name-input");
 const phoneInput = document.getElementById("phone-input");
@@ -185,6 +185,9 @@ btnCloseProfile.addEventListener("click", () =>
 searchInput.addEventListener("input", () => {
   renderUnassigned();
 });
+
+btnAutoAssign.addEventListener("click", autoAssignEmployees);
+console.log(btnAutoAssign);
 // ================== Functions =============
 
 function clearModalFields() {
@@ -259,6 +262,34 @@ function highlightEmptyRequiredZones() {
   });
 }
 
+function autoAssignEmployees() {
+ 
+  let unassigned = employees.filter(e=> ! e.zone);
+
+  zones.forEach(zone=>{
+    const zoneName = zone.dataset.zone;
+    const limit = parseInt(zone.dataset.limit);
+
+    let currentCount = employees.filter(e=>e.zone === zoneName).length;
+    for(let emp of unassigned){
+      if(currentCount>= limit){
+        break;
+      }
+
+      if(canAssign(emp.role,zoneName)){
+        emp.zone = zoneName;
+        currentCount++;
+      }
+    }
+    unassigned = employees.filter(e=>!e.zone);
+  });
+    
+  renderUnassigned();
+  renderZones();
+  highlightEmptyRequiredZones();
+  saveToLocalStorage();
+  alert("Auto assign complete !-)");
+}
 // =============== Validation =======================
 
 function validationInputs(name, email, phone, exps) {

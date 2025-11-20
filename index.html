@@ -16,6 +16,12 @@
       class="w-[18%] md:w-[18%] bg-white shadow-2xl p-4 flex flex-col gap-4 relative"
     >
       <h2 class="text-sm md:text-xl font-bold">Unassigned Staff</h2>
+      <button
+        id="btn-auto-assign"
+        class="bg-green-500 text-white w-full py-2 rounded hover:bg-green-600 transition"
+      >
+        assigne automatic
+      </button>
       <input
         type="text"
         id="search-input"
@@ -48,7 +54,7 @@
         >
           <!-- zones -->
           <div
-            class="zone col-start-1 row-start-1 bg-amber-300/15 relative "
+            class="zone col-start-1 row-start-1 bg-amber-300/15 relative"
             data-zone="conference"
             data-limit="6"
           >
@@ -68,7 +74,7 @@
             ></div>
           </div>
           <div
-            class="zone col-start-1 row-start-2 row-span-2  relative "
+            class="zone col-start-1 row-start-2 row-span-2 relative"
             data-zone="reception"
             data-limit="5"
           >
@@ -88,7 +94,7 @@
             ></div>
           </div>
           <div
-            class="zone col-start-3 row-start-1  relative "
+            class="zone col-start-3 row-start-1 relative"
             data-zone="servers"
             data-limit="4"
           >
@@ -107,7 +113,7 @@
             ></div>
           </div>
           <div
-            class="zone col-start-4 row-start-1  relative "
+            class="zone col-start-4 row-start-1 relative"
             data-zone="security"
             data-limit="2"
           >
@@ -124,7 +130,7 @@
             <div class="zone-content flex flex-wrap gap-2"></div>
           </div>
           <div
-            class="zone col-start-3 row-start-3  relative"
+            class="zone col-start-3 row-start-3 relative"
             data-zone="staff"
             data-limit="3"
           >
@@ -141,7 +147,7 @@
             ></div>
           </div>
           <div
-            class="zone col-start-4 row-start-3  relative "
+            class="zone col-start-4 row-start-3 relative"
             data-zone="archives"
             data-limit="4"
           >
