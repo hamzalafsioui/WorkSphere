@@ -36,10 +36,9 @@ const emailInput = document.getElementById("email-input");
 const photoInput = document.getElementById("photo-input");
 const searchInput = document.getElementById("search-input");
 
+// select elements
 const roleSelect = document.getElementById("role-select");
 const listSelect = document.getElementById("list-select");
-
-const imgProfile = document.getElementById("img-profile");
 
 //  profile elements
 const profilePhoto = document.getElementById("profile-photo");
@@ -48,6 +47,7 @@ const profileRole = document.getElementById("profile-role");
 const profileEmail = document.getElementById("profile-email");
 const profilePhone = document.getElementById("profile-phone");
 const profileZone = document.getElementById("profile-zone");
+const imgProfile = document.getElementById("img-profile");
 const profileExperiences = document.getElementById("profile-experiences");
 
 console.log(btnAddWorker);
@@ -57,9 +57,10 @@ console.log(workerModal);
 btnAddWorker.addEventListener("click", (e) =>
   workerModal.classList.remove("hidden")
 );
-btnCloseModal.addEventListener("click", (e) =>
-  workerModal.classList.add("hidden")
-);
+btnCloseModal.addEventListener("click", (e) => {
+  clearModalFields();
+  workerModal.classList.add("hidden");
+});
 btnCloseSelectModal.addEventListener("click", () =>
   selectModal.classList.add("hidden")
 );
@@ -119,7 +120,7 @@ photoInput.addEventListener("change", () => {
 
 imgProfile.onerror = () => {
   imgProfile.src =
-    "https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU";
+    "https://plus.unsplash.com/premium_vector-1727953895916-9f643d7d4b94?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 };
 
 btnAddExperience.addEventListener("click", () => {
