@@ -183,11 +183,13 @@
       </section>
 
       <!-- modal add new worker -->
-      <div
+      <section
         id="modal-add-worker"
         class="fixed inset-0 overflow-y-auto bg-black/40 p-4 hidden z-99"
       >
-        <div class="bg-white flex flex-col gap-4 p-4 w-[80%] md:w-[50%]">
+        <div
+          class="bg-white flex flex-col gap-4 rounded p-4 w-[80%] md:w-[50%]"
+        >
           <h2 class="text-xl font-bold">Add Employee</h2>
           <div class="field flex flex-col gap-2">
             <label for="name-input">Name</label>
@@ -220,7 +222,7 @@
               id="img-profile"
               src="https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
               class="w-16 h-16 rounded-[50%] object-cover"
-              alt=""
+              alt="Profile Image"
             />
           </div>
           <div class="field flex flex-col gap-2">
@@ -269,10 +271,10 @@
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Modal Show profil Info -->
-      <div
+      <article
         id="modal-profile"
         class="modal fixed inset-0 bg-black/40 hidden justify-center items-center z-99"
       >
@@ -282,6 +284,8 @@
           <img
             id="profile-photo"
             class="w-24 h-24 rounded-full mx-auto object-cover"
+            alt="Profil Image"
+            src="https://media.licdn.com/dms/image/v2/C4D03AQGr2NICwDJcOg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1651428759649?e=1765411200&v=beta&t=cegABWEEZC0UCwAbsGBnlVaIP_1w0UD9kLo0w8rq7aU"
           />
 
           <h2 id="profile-name" class="text-2xl font-bold text-center"></h2>
@@ -307,7 +311,7 @@
             Close
           </button>
         </div>
-      </div>
+      </article>
 
       <!-- Modal to select employee for zone  -->
       <div
