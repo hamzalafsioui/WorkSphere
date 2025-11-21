@@ -481,8 +481,8 @@ function showSelectModal(zoneName) {
   listSelect.innerHTML = "";
 
   const allowEmployees = employees
-    .filter((e) => !e.zone)
-    .filter((emp) => canAssign(emp.role, zoneName));
+  .filter((emp) => canAssign(emp.role, zoneName));
+    // .filter((e) => !e.zone)
   console.log(allowEmployees);
 
   allowEmployees.forEach((emp) => {
