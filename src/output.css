@@ -238,6 +238,9 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
+  .z-5 {
+    z-index: 5;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -246,6 +249,12 @@
   }
   .z-99 {
     z-index: 99;
+  }
+  .z-100 {
+    z-index: 100;
+  }
+  .z-500 {
+    z-index: 500;
   }
   .z-999 {
     z-index: 999;

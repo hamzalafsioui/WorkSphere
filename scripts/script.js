@@ -17,8 +17,8 @@ function saveToLocalStorage() {
   localStorage.setItem("employees", JSON.stringify(employees));
 }
 // ================= Modals ===================
-const workerModal = document.getElementById("modal-add-worker");
-const profileModal = document.getElementById("modal-profile");
+const workerModal = document.getElementById("add-worker-modal");
+const profileModal = document.getElementById("profile-modal");
 const selectModal = document.getElementById("select-modal");
 
 // ================= Buttons ===================
@@ -28,8 +28,6 @@ const btnSaveEmployee = document.getElementById("btn-save-employee");
 const btnAddExperience = document.getElementById("btn-add-experience");
 const btnCloseProfile = document.getElementById("btn-close-profile");
 const btnCloseSelectModal = document.getElementById("btn-close-select-modal");
-
-const btnAddZone = document.querySelector(".zone-btn-add");
 const btnAutoAssign = document.getElementById("btn-auto-assign");
 // ================= Input =====================
 const nameInput = document.getElementById("name-input");
@@ -39,7 +37,7 @@ const photoInput = document.getElementById("photo-input");
 const searchInput = document.getElementById("search-input");
 
 const roleSelect = document.getElementById("role-select");
-const listSelect = document.getElementById("select-list");
+const listSelect = document.getElementById("list-select");
 
 const imgProfile = document.getElementById("img-profile");
 
@@ -457,7 +455,7 @@ function renderZones() {
 
 // ======== zone assign ==========
 zones.forEach((zone) => {
-  const addBtn = zone.querySelector(".zone-btn-add");
+  const addBtn = zone.querySelector(".zone-btn-add"); // select only add btn that exist in this zone
   addBtn.addEventListener("click", () => {
     console.log("button clicked");
     console.log(zone.dataset.zone);
@@ -481,8 +479,9 @@ function showSelectModal(zoneName) {
   listSelect.innerHTML = "";
 
   const allowEmployees = employees
-  .filter((emp) => canAssign(emp.role, zoneName));
-    // .filter((e) => !e.zone)
+    .filter((emp) => emp.zone != zoneName)
+    .filter((emp) => canAssign(emp.role, zoneName));
+  // .filter((e) => !e.zone)
   console.log(allowEmployees);
 
   allowEmployees.forEach((emp) => {
