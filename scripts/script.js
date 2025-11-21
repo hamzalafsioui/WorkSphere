@@ -187,6 +187,30 @@ searchInput.addEventListener("input", () => {
 
 btnAutoAssign.addEventListener("click", autoAssignEmployees);
 console.log(btnAutoAssign);
+
+// ============ Event Listener to close modals ==============
+// Worker modal
+workerModal.addEventListener("click", (e) => {
+  if (e.target === workerModal) {
+    clearModalFields();
+    workerModal.classList.add("hidden");
+  }
+});
+
+// Close profile
+profileModal.addEventListener("click", (e) => {
+  if (e.target === profileModal) {
+    profileModal.classList.add("hidden");
+  }
+});
+
+// Select modal
+selectModal.addEventListener("click", (e) => {
+  if (e.target === selectModal) {
+    selectModal.classList.add("hidden");
+  }
+});
+
 // ================== Functions =============
 
 function clearModalFields() {
