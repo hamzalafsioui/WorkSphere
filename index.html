@@ -207,6 +207,12 @@
           class="bg-white flex flex-col gap-4 rounded p-4 w-[80%] md:w-[50%]"
         >
           <h2 class="text-xl font-bold">Add Employee</h2>
+          <p
+            id="error-message"
+            class="text-red-500 text-sm font-semibold hidden"
+          >
+            <!-- Injected by js when the error happen -->
+          </p>
           <div class="field flex flex-col gap-2">
             <label for="name-input">Name</label>
             <input

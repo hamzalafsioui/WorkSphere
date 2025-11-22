@@ -312,33 +312,46 @@ function autoAssignEmployees() {
   saveToLocalStorage();
   alert("Auto assign complete !-)");
 }
+
+// error validation
+function showError(msg) {
+  const errorBox = document.getElementById("error-message");
+  errorBox.textContent = msg;
+  errorBox.classList.remove("hidden");
+}
+function clearError() {
+  const errorBox = document.getElementById("error-message");
+  errorBox.textContent = "";
+  errorBox.classList.add("hidden");
+}
+
 // =============== Validation =======================
 
 function validationInputs(name, email, phone, exps) {
   // Name
   if (!name || name.length < 2) {
-    alert("Name must be at least 2 characters");
+    showError("Name must be at least 2 characters.");
     return false;
   }
 
   // Email
   const emailRegex = /\S+@\S+\.\S+/;
   if (email === "" || !emailRegex.test(email)) {
-    alert("Invalid email format");
+    showError("Invalid email format");
     return false;
   }
 
   // Phone
   const phoneRegex = /^[0-9\s+()-]{6,20}$/;
   if (phone === "" || !phoneRegex.test(phone)) {
-    alert("Invalid phone number");
+    showError("Invalid phone number");
     return false;
   }
 
   // Experiences [from < to]
   for (let exp of exps) {
     if (!validateDates(exp.from, exp.to)) {
-      alert(`Experience "${exp.title}": 'From' date must be before 'To' date`);
+      showError(`Experience "${exp.title}": 'From' date must be before 'To' date`);
       return false;
     }
   }
