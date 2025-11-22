@@ -411,7 +411,9 @@ function renderUnassigned() {
     text-[10px] md:text-xs
     font-bold
     cursor-pointer
-  ">X</button>
+  "
+  type="button"
+  >X</button>
 `;
 
     li.addEventListener("mouseover", () => {
@@ -465,7 +467,9 @@ function renderZones() {
           w-4 h-4 md:w-5 md:h-5
           flex items-center justify-center opacity-0
           bg-red-500 text-white rounded-full text-[7px] md:text-xs font-bold
-      ">X</button>
+      "
+      type="button"
+      >X</button>
   </div>
 `;
 
