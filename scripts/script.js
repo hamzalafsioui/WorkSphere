@@ -3,8 +3,8 @@ let employees = [];
 let zones = document.querySelectorAll(".zone");
 let unassignedList = document.getElementById("unassigned-list");
 let experienceContainer = document.getElementById("experience-container");
-console.log(zones);
-console.log(unassignedList);
+// console.log(zones);
+// console.log(unassignedList);
 // ============== Local Storage ================
 function loadFrmLocalStorage() {
   const data = localStorage.getItem("employees") || [];
@@ -50,8 +50,8 @@ const profileZone = document.getElementById("profile-zone");
 const imgProfile = document.getElementById("img-profile");
 const profileExperiences = document.getElementById("profile-experiences");
 
-console.log(btnAddWorker);
-console.log(workerModal);
+// console.log(btnAddWorker);
+// console.log(workerModal);
 
 // =========== Event Listener ===================
 btnAddWorker.addEventListener("click", (e) =>
@@ -89,11 +89,10 @@ btnSaveEmployee.addEventListener("click", (e) => {
   });
 
   if (!validationInputs(name, email, phone, experiences)) {
-    console.log("not valid inputs");
-
+    // console.log("not valid inputs");
     return;
   }
-  console.log("valid inputs");
+  // console.log("valid inputs");
 
   employees.push({
     id: Date.now(),
@@ -110,12 +109,12 @@ btnSaveEmployee.addEventListener("click", (e) => {
   clearModalFields();
   renderUnassigned();
   saveToLocalStorage();
-  console.log(employees);
+  // console.log(employees);
 });
 
 photoInput.addEventListener("change", () => {
   imgProfile.src = photoInput.value.trim();
-  console.log(imgProfile);
+  // console.log(imgProfile);
 });
 
 imgProfile.onerror = () => {
@@ -186,9 +185,9 @@ searchInput.addEventListener("input", () => {
 });
 
 btnAutoAssign.addEventListener("click", autoAssignEmployees);
-console.log(btnAutoAssign);
+// console.log(btnAutoAssign);
 
-// ============ Event Listener to close modals ==============
+// ================ Event Listener to close modals =================
 // Worker modal
 workerModal.addEventListener("click", (e) => {
   if (e.target === workerModal) {
@@ -220,6 +219,7 @@ function clearModalFields() {
   photoInput.value = "";
   experienceContainer.innerHTML = "";
   imgProfile.src = "";
+  clearError();
 }
 
 function showProfile(id) {
@@ -278,9 +278,9 @@ function highlightEmptyRequiredZones() {
     const employeesInZone = employees.filter((e) => e.zone === zoneName);
 
     if (employeesInZone.length === 0) {
-      zone.classList.add("bg-red-300/30");
+      zone.classList.add("bg-red-400/40");
     } else {
-      zone.classList.remove("bg-red-300/30");
+      zone.classList.remove("bg-red-400/40");
     }
   });
 }
@@ -329,8 +329,8 @@ function clearError() {
 
 function validationInputs(name, email, phone, exps) {
   // Name
-  if (!name || name.length < 2) {
-    showError("Name must be at least 2 characters.");
+  if (!name || name.length < 3) {
+    showError("Name must be at least 3 characters.");
     return false;
   }
 
@@ -351,7 +351,9 @@ function validationInputs(name, email, phone, exps) {
   // Experiences [from < to]
   for (let exp of exps) {
     if (!validateDates(exp.from, exp.to)) {
-      showError(`Experience "${exp.title}": 'From' date must be before 'To' date`);
+      showError(
+        `Experience "${exp.title}": 'From' date must be before 'To' date`
+      );
       return false;
     }
   }
@@ -419,7 +421,7 @@ function renderUnassigned() {
       li.querySelector("button").style.opacity = 0;
     });
     li.querySelector("button").addEventListener("click", () => {
-      employees = employees.filter((e) => e.id != emp.id);
+      employees = employees.filter((e) => e.id != emp.id); // remove employee
       renderUnassigned();
       saveToLocalStorage();
     });
@@ -427,7 +429,7 @@ function renderUnassigned() {
     // Profile click
     li.querySelector("span").addEventListener("click", () => {
       showProfile(emp.id);
-      console.log(emp.id);
+      // console.log(emp.id);
     });
 
     unassignedList.appendChild(li);
@@ -478,7 +480,7 @@ function renderZones() {
       });
       div.addEventListener("mouseover", () => {
         div.querySelector("button").style.opacity = 1;
-        console.log("mouse hover");
+        // console.log("mouse hover");
       });
       div.addEventListener("mouseleave", () => {
         div.querySelector("button").style.opacity = 0;
@@ -495,8 +497,8 @@ function renderZones() {
 zones.forEach((zone) => {
   const addBtn = zone.querySelector(".zone-btn-add"); // select only add btn that exist in this zone
   addBtn.addEventListener("click", () => {
-    console.log("button clicked");
-    console.log(zone.dataset.zone);
+    // console.log("button clicked");
+    // console.log(zone.dataset.zone);
 
     const zoneName = zone.dataset.zone;
     showSelectModal(zoneName);
@@ -504,15 +506,15 @@ zones.forEach((zone) => {
 });
 
 function showSelectModal(zoneName) {
-  console.log(zoneName);
+  // console.log(zoneName);
 
   const limit = parseInt(
     document.querySelector(`.zone[data-zone="${zoneName}"]`).dataset.limit
   );
-  console.log(limit);
+  // console.log(limit);
 
   const currentCount = employees.filter((e) => e.zone === zoneName).length;
-  console.log(currentCount);
+  // console.log(currentCount);
 
   listSelect.innerHTML = "";
 
@@ -520,7 +522,7 @@ function showSelectModal(zoneName) {
     .filter((emp) => emp.zone != zoneName)
     .filter((emp) => canAssign(emp.role, zoneName));
   // .filter((e) => !e.zone)
-  console.log(allowEmployees);
+  // console.log(allowEmployees);
 
   allowEmployees.forEach((emp) => {
     const li = document.createElement("li");
@@ -564,8 +566,7 @@ function canAssign(role, zoneName) {
 
   // receptionist
   if (r === "receptionist") {
-    console.log(r);
-
+    // console.log(r);
     return zoneName === "reception";
   }
 
